@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { projectDetails } from '@/lib/projectsData';
 import { useSearchParams } from 'next/navigation';
 
-type CategoryFilter = "Tous" | "Résidentiel" | "Commerciale" | "Public" | "Urbanisme" | "Enseignement";
+type CategoryFilter = "Tous" | "Résidentiel" | "Commerciale";
 
 export default function ProjectsSection() {
   const searchParams = useSearchParams();
@@ -16,7 +16,7 @@ export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState<CategoryFilter>(initialFilter);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
-  const categories: CategoryFilter[] = ["Tous", "Résidentiel", "Commerciale", "Public", "Urbanisme", "Enseignement"];
+  const categories: CategoryFilter[] = ["Tous", "Résidentiel", "Commerciale"];
 
   const filteredProjects = activeFilter === "Tous"
     ? projectDetails
@@ -31,7 +31,6 @@ export default function ProjectsSection() {
       setActiveFilter(filter);
     }
 
-    // Si on est dans la section "projects", faire défiler l'écran
     if (hash === '#projects') {
       const section = document.getElementById('projects');
       if (section) {
@@ -47,17 +46,21 @@ export default function ProjectsSection() {
     // Met à jour l'URL avec le nouveau filtre
     const url = new URL(window.location.href);
     url.searchParams.set('filter', category);
-    window.history.pushState({}, '', url.toString()); // Met à jour l'URL sans recharger la page
+    window.history.pushState({}, '', url.toString());
   };
 
   return (
     <section id="projects" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Projets en vedette</h2>
+          <h2>
+            Explorer les créations
+            <span className="sr-only">
+              Projets d’architecture intérieure : villas modernes, studios et espaces commerciaux conçus à Paris et en Île-de-France
+            </span>
+          </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            Explorez notre portefeuille diversifié de réalisations architecturales couvrant les espaces résidentiels, commerciaux et publics,
-            commerciaux et des espaces publics.
+            Découvrez un éventail de projets résidentiels et commerciaux, conçus pour transformer chaque espace en expérience unique.
           </p>
         </div>
 
@@ -65,7 +68,7 @@ export default function ProjectsSection() {
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => handleFilterChange(category)} // Mise à jour de l'état et de l'URL
+              onClick={() => handleFilterChange(category)}
               className={cn(
                 'px-4 py-2 text-sm font-medium rounded-full transition-all duration-300',
                 activeFilter === category
@@ -96,7 +99,6 @@ export default function ProjectsSection() {
                     "object-cover transition-transform duration-700 ease-in-out",
                     hoveredProject === project.id ? "scale-110" : "scale-100"
                   )}
-                  unoptimized
                 />
                 <div
                   className={cn(
@@ -109,11 +111,12 @@ export default function ProjectsSection() {
                     <h3 className="text-white text-xl font-bold mt-2 mb-3">{project.title}</h3>
                     <p className="text-white/90 text-sm mb-6">{project.description}</p>
                     <Link
-                      href={`/projects/${project.id}`}
+                      href={`/projects/${project.slug}`}
+                      aria-label={`Voir le projet ${project.title} de DD Interiors Home`}
                       className="inline-flex items-center rounded-full bg-white/20 backdrop-blur-sm px-4 py-2 text-sm text-white hover:bg-white/30 transition-colors duration-300"
                     >
                       <ExternalLink className="h-4 w-4 mr-2" />
-                      View Project
+                      Voir le Projet
                     </Link>
                   </div>
                 </div>
@@ -125,13 +128,6 @@ export default function ProjectsSection() {
             </div>
           ))}
         </div>
-
-        {/* <div className="text-center mt-16">
-          <button className="inline-flex items-center px-6 py-3 bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-full transition-colors duration-300">
-            <Plus className="h-5 w-5 mr-2" />
-            Voir tous les projets
-          </button>
-        </div> */}
       </div>
     </section>
   );

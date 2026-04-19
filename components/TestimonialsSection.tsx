@@ -34,10 +34,9 @@ export default function TestimonialsSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Témoignages de nos clients</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Témoignages clients</h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-          Écoutez ce que nos clients ont à dire sur leur expérience de travail avec nous et sur l'impact de nos solutions architecturales. 
-          l'impact de nos solutions architecturales.
+          Écoutez ce que les clients ont à dire sur leur expérience de travail avec <span className="font-semibold text-blue-500"> DD Interiors Home</span> et sur l'impact des solutions architecturales.
           </p>
         </div>
         

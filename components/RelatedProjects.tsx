@@ -7,6 +7,7 @@ import { ArrowRight } from 'lucide-react';
 
 interface Project {
     id: number;
+    slug: string; // 👈 on ajoute le slug
     title: string;
     category: string;
     images: string[];
@@ -14,7 +15,7 @@ interface Project {
 
 interface RelatedProjectsProps {
     projects: Project[];
-    category: string; // 👈 on ajoute ça
+    category: string;
 }
 
 export default function RelatedProjects({ projects, category }: RelatedProjectsProps) {
@@ -39,9 +40,10 @@ export default function RelatedProjects({ projects, category }: RelatedProjectsP
             <div className="mt-16 text-center">
                 {projects.length > 0 && (
                     <Link
-                        href={`/projects/${projects[0].id}`}
+                        href={`/projects/${projects[0].slug}`} // 👈 ici aussi
                         className="inline-flex items-center text-sm font-medium hover:underline group"
                     >
+                        Voir le projet
                     </Link>
                 )}
             </div>
@@ -51,7 +53,7 @@ export default function RelatedProjects({ projects, category }: RelatedProjectsP
 
 function RelatedProjectCard({ project }: { project: Project }) {
     return (
-        <Link href={`/projects/${project.id}`} className="group">
+        <Link href={`/projects/${project.slug}`} className="group"> {/* 👈 ici aussi */}
             <div className="overflow-hidden mb-4" style={{ width: '60vw', height: '20vh' }}>
                 <img
                     src={project.images[0]}

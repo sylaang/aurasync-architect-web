@@ -12,12 +12,12 @@ export default function ContactSection() {
     subject: '',
     message: ''
   });
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
@@ -25,26 +25,26 @@ export default function ContactSection() {
     alert('Thank you for your message! We will get back to you soon.');
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
-  
+
   return (
     <section id="contact" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Prendre contact</h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-          Vous avez une idée ou un projet ? Je serais heureux de vous écouter. Prenez contact pour organiser une consultation ou découvrir les services que je propose.
+            Vous avez une idée ou un projet ? Je serais heureuse de vous écouter. Prenez contact pour organiser une consultation ou explorer plus en détail les services que je propose.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
             <div className="mb-10">
-              <h3 className="text-2xl font-semibold mb-6">Informations sur le contact</h3>
+              <h3 className="text-2xl font-semibold mb-6">Informations contact</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
                   <div className="flex-shrink-0 mt-1">
@@ -52,33 +52,33 @@ export default function ContactSection() {
                   </div>
                   <div className="ml-4">
                     <p className="font-medium">Localisation</p>
-                    <p className="text-muted-foreground">123 Avenue de Paris</p>
-                    <p className="text-muted-foreground">Paris, FR 7500</p>
+                    <p className="text-muted-foreground">242 Boulevard Voltaire </p>
+                    <p className="text-muted-foreground">Paris, 75011</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="flex-shrink-0 mt-1">
                     <Phone className="h-5 w-5 text-primary" />
                   </div>
                   <div className="ml-4">
                     <p className="font-medium">Téléphone</p>
-                    <p className="text-muted-foreground">+33 1 23 45 67 78</p>
+                    <p className="text-muted-foreground">+33 7 64 40 24 70 </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="flex-shrink-0 mt-1">
                     <Mail className="h-5 w-5 text-primary" />
                   </div>
                   <div className="ml-4">
                     <p className="font-medium">Email</p>
-                    <p className="text-muted-foreground">info@archstudio.com</p>
+                    <p className="text-muted-foreground">ddinteriroshome@gmail.com</p>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             <div>
               <h3 className="text-2xl font-semibold mb-6">Heures de bureau</h3>
               <div className="space-y-3">
@@ -97,7 +97,7 @@ export default function ContactSection() {
               </div>
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -106,7 +106,7 @@ export default function ContactSection() {
           >
             <form onSubmit={handleSubmit} className="bg-card p-8 rounded-lg shadow-sm">
               <h3 className="text-2xl font-semibold mb-6">Envoyez-moi un message</h3>
-              
+
               <div className="grid grid-cols-1 gap-5">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">
@@ -122,7 +122,7 @@ export default function ContactSection() {
                     className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">
                     Email
@@ -137,10 +137,10 @@ export default function ContactSection() {
                     className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-1">
-                  Sujet
+                    Sujet
                   </label>
                   <select
                     id="subject"
@@ -150,14 +150,15 @@ export default function ContactSection() {
                     required
                     className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
                   >
-                    <option value="">Sélectionner un sujet</option>
-                    <option value="General Inquiry">Enquête générale</option>
-                    <option value="Project Consultation">Consultation de projet</option>
-                    <option value="Collaboration">Collaboration</option>
-                    <option value="Career Opportunities">Opportunités de carrière</option>
+                    <option value="project-consultation">Consultation de projet</option>
+                    <option value="plans-et-agencement">Plans d'études & agencement</option>
+                    <option value="conception-design">Conception & Design</option>
+                    <option value="urbanisme">Demandes d'urbanisme</option>
+                    <option value="vefa">Conseil achat sur plan VEFA</option>
+                    <option value="collaboration">Collaboration</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-1">
                     Message
@@ -172,7 +173,7 @@ export default function ContactSection() {
                     className="w-full px-4 py-2 border border-input rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
                   />
                 </div>
-                
+
                 <div>
                   <button
                     type="submit"

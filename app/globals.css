@@ -78,5 +78,137 @@
   }
   body {
     @apply bg-background text-foreground;
+      height: 100%;
+  background: transparent;
+  }
+}
+
+/* ============================= */
+/* FOOTER REVEAL PARALLAX EFFECT */
+/* ============================= */
+
+html {
+  height: 100%;
+}
+
+/* ============================= */
+/* FOOTER REVEAL PARALLAX EFFECT */
+/* ============================= */
+
+.parallax-footer {
+  position: fixed;
+  inset: 0;              /* top:0 right:0 bottom:0 left:0 */
+  height: 100vh;
+  width: 100%;
+  z-index: 0;
+}
+
+
+/* ============================= */
+/* MAIN CONTENT */
+/* ============================= */
+
+
+
+main {
+  position: relative;
+  z-index: 10;
+  background: #ffffff;
+  margin-bottom: 100vh;  /* Permet l'effet reveal */
+}
+
+/* ============================= */
+/* PARTICLES.JS LAYER */
+/* ============================= */
+
+#particles-js {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+/* ============================= */
+/* FOOTER BACKGROUND GRADIENT */
+/* ============================= */
+
+.parallax-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background: linear-gradient(
+    45deg,
+    #000000 0%,
+    #000000 60%,
+    #0f172a 70%,
+    #1a2980 80%,
+    #1dbede 100%
+  );
+
+  background-size: 200% 200%;
+  animation: gradientShift 30s ease infinite;
+}
+
+/* ============================= */
+/* FOOTER CONTENT */
+/* ============================= */
+
+.footer-content {
+  position: relative;
+  z-index: 5; /* au-dessus des particules */
+}
+
+/* ============================= */
+/* OPTIONAL ANIMATION */
+/* ============================= */
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============================= */
+/* CORRECTION MOBILE */
+/* ============================= */
+
+/* Empêcher le scroll horizontal uniquement sur mobile */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  .parallax-footer {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .footer-content {
+    overflow-x: hidden;
+  }
+  
+  /* CORRECTION POUR LE SCROLL VERTICAL */
+  body {
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100vh;
+  }
+  
+  html {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+  
+  main {
+    margin-bottom: 100vh;
+    position: relative;
+    z-index: 10;
+    background: #ffffff;
+    /* Important : permet de scroller normalement */
+    overflow-y: visible;
   }
 }

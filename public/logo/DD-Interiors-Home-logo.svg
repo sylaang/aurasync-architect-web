@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 120px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #297899;
+        font-family: "Palatino Linotype";
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        font-size: 26.667px;
+      }
+    </style>
+  </defs>
+  <text id="_D.D" data-name=" D.D" class="cls-1" x="134.676" y="38.676"><tspan dy="144">D.D</tspan></text>
+  <text id="Interiors_home" data-name="Interiors home" class="cls-2" x="156.667" y="252.232">Interiors home</text>
+</svg>

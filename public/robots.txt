@@ -1,0 +1,6 @@
+# Autoriser tous les robots à explorer le site
+User-agent: *
+Disallow:
+
+# Lien vers le sitemap XML
+Sitemap: https://ddinteriorshome.com/sitemap.xml

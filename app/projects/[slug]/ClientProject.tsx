@@ -7,6 +7,7 @@ import { projectDetails } from '@/lib/projectsData';
 
 interface Project {
   id: number;
+  slug: string;
   title: string;
   category: string;
   location: string;
@@ -14,6 +15,8 @@ interface Project {
   area: string;
   architect: string;
   description: string;
+  full_description: string;
+  plan: string;
   images: string[];
   features: string[];
 }
@@ -22,16 +25,14 @@ export default function ClientProject({ project }: { project: Project }) {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Projets liés par catégorie (max 3)
   const relatedProjects = projectDetails
-    .filter(p => p.id !== project.id && p.category === project.category)
+    .filter(p => p.slug !== project.slug && p.category === project.category)
     .slice(0, 3);
 
   return (
@@ -46,7 +47,7 @@ export default function ClientProject({ project }: { project: Project }) {
         >
           <motion.img
             src={project.images?.[0]}
-            alt="Image principale"
+            alt={project.title}
             className="w-full h-full object-cover"
             initial={{ y: 0 }}
             animate={{ y: scrollY * 0.1 }}
@@ -60,6 +61,14 @@ export default function ClientProject({ project }: { project: Project }) {
         <div className="md:col-span-8">
           <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
           <p className="text-muted-foreground text-lg mb-8">{project.description}</p>
+          <p className="text-muted-foreground text-lg mb-8">{project.full_description}</p>
+
+          <h3 className="text-xl font-semibold mb-4">Plan du projet</h3>
+          <img
+            src={project.plan}
+            alt={`Plan de ${project.title}`}
+            className="w-full h-auto"
+          />
         </div>
 
         <div className="md:col-span-4 space-y-10">
